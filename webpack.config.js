@@ -27,7 +27,7 @@ const config = {
                 test: /\.jsx$/,
                 loader: "babel-loader"
             },{
-                test:/\.(jpeg|jpg|gif|svg)$/,
+                test:/\.(jpeg|jpg|gif|svg|png)$/,
                 use: [
                     {
                         loader: "url-loader",

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './app.vue'
+import './assets/styles/global.styl'
 
 Vue.config.devtools = true
 
