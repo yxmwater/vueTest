@@ -17,6 +17,12 @@
         },
         methods:{
             deleteTodo(){
+                /*
+                * 子组件触发动作，父组件删除，有多种实现方式
+                * 1.父组件通过props传递delFun，子组件调用
+                * 2.子组件发出事件，父组件监听$emit
+                * */
+                this.$emit('del',this.todo.id)
 
             }
         }

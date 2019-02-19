@@ -1,11 +1,11 @@
 <template>
     <div class="helper">
-        <span class="left">2 items left</span>
+        <span class="left">{{unFinishedTodoLength}} items left</span>
         <span class="tabs">
             <span v-for="state in states"
             :key="state"
             :class="[state,filter===state?'actived':'']"
-            @click="toggleFilter(state)">{{state}}}</span>
+            @click="toggleFilter(state)">{{state}}</span>
         </span>
         <span class="clear" @click="clearAllCompleted">Clear Completed</span>
     </div>
@@ -16,6 +16,10 @@
             filter:{
                 type:String,
                 required:true,
+            },
+            todos:{
+                type:Array,
+                required:true,
             }
         },
         data(){
@@ -23,12 +27,18 @@
                 states:['all','active','completed']
             }
         },
+        computed:{
+            unFinishedTodoLength(){
+                return this.todos.filter(todo=>!todo.completed).length;
+            },
+        },
         methods:{
-            toggleFilter(){
+            toggleFilter(state){
+                this.$emit('toggleFilter',state)
 
             },
             clearAllCompleted(){
-
+                this.$emit('clearAllFinished')
             },
         }
     }
@@ -68,7 +78,7 @@
             cursor pointer
             border 1px solid rgba(175,47,47,0)
             &.actived{
-                border-color rgba(175,47,47,0.4)
+                border-color rgba(175,47,47,0.6)
                 border-radius 5px
             }
         }
