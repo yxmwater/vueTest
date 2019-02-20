@@ -74,7 +74,7 @@
         line-weight 1.4em
         border 0
         outline none
-        color green
+        color inherit
         padding 6px
         border 1px solid #999
         box-shadow inset 0 -1px 5px 0 rhba(0,0,147,0.4)
