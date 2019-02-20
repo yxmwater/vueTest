@@ -60,18 +60,17 @@
         width 40px
         height 40px
         position absolute
-        top 2px
+        top 0
         bottom 0
-        padding-left 10px
         margin auto 0
         border none
         appearance none
         outline none
         &:after{
-            content url('../assets/images/round.png')
+            content url('../assets/images/round.svg')
         }
         &:checked:after{
-            content url('../assets/images/done.png')
+            content url('../assets/images/done.svg')
         }
     }
     .destroy{
