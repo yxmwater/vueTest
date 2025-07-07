@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天陪伴 - 智慧陪伴系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="chat-container">
+        <!-- 聊天头部 -->
+        <header class="chat-header">
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="chat-info">
+                <h1>小助手</h1>
+                <p class="status">在线</p>
+            </div>
+            <button class="voice-call-btn" onclick="startVoiceCall()">
+                <i class="fas fa-phone"></i>
+            </button>
+        </header>
+
+        <!-- 聊天消息区域 -->
+        <div class="chat-messages" id="chatMessages">
+            <div class="message assistant">
+                <div class="avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>您好！我是您的智能助手，有什么可以帮助您的吗？</p>
+                    <span class="time">10:30</span>
+                </div>
+            </div>
+            
+            <div class="quick-replies">
+                <button onclick="sendQuickReply('今天天气怎么样？')">今天天气怎么样？</button>
+                <button onclick="sendQuickReply('提醒我吃药')">提醒我吃药</button>
+                <button onclick="sendQuickReply('给我讲个故事')">给我讲个故事</button>
+                <button onclick="sendQuickReply('播放音乐')">播放音乐</button>
+            </div>
+        </div>
+
+        <!-- 输入区域 -->
+        <div class="chat-input">
+            <button class="voice-input-btn" onclick="startVoiceInput()">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <input type="text" id="messageInput" placeholder="输入消息..." onkeypress="handleKeyPress(event)">
+            <button class="send-btn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="js/chat.js"></script>
+</body>
+</html>
