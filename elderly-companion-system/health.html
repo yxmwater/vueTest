@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康监测 - 智慧陪伴系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/health.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 页面头部 -->
+        <header class="page-header">
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>健康监测</h1>
+            <button class="refresh-btn" onclick="refreshHealthData()">
+                <i class="fas fa-sync"></i>
+            </button>
+        </header>
+
+        <!-- 健康概览 -->
+        <section class="health-overview">
+            <h2>今日健康状况</h2>
+            <div class="health-score">
+                <div class="score-circle">
+                    <span class="score">92</span>
+                    <span class="score-label">健康指数</span>
+                </div>
+                <p class="health-status">整体状况良好</p>
+            </div>
+        </section>
+
+        <!-- 详细指标 -->
+        <section class="detailed-metrics">
+            <h2>生命体征监测</h2>
+            
+            <!-- 血压 -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <i class="fas fa-heart"></i>
+                    <h3>血压</h3>
+                    <span class="last-update">5分钟前更新</span>
+                </div>
+                <div class="metric-content">
+                    <div class="current-value">
+                        <span class="main-value">120/80</span>
+                        <span class="unit">mmHg</span>
+                        <span class="status normal">正常</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="bloodPressureChart"></canvas>
+                    </div>
+                    <div class="metric-info">
+                        <p>收缩压：120 mmHg（正常范围：90-140）</p>
+                        <p>舒张压：80 mmHg（正常范围：60-90）</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 心率 -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>心率</h3>
+                    <span class="last-update">实时监测中</span>
+                </div>
+                <div class="metric-content">
+                    <div class="current-value">
+                        <span class="main-value">72</span>
+                        <span class="unit">次/分</span>
+                        <span class="status normal">正常</span>
+                    </div>
+                    <div class="heart-rate-animation">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="metric-info">
+                        <p>静息心率：72 次/分</p>
+                        <p>今日范围：68-78 次/分</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 血糖 -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <i class="fas fa-tint"></i>
+                    <h3>血糖</h3>
+                    <span class="last-update">餐后2小时</span>
+                </div>
+                <div class="metric-content">
+                    <div class="current-value">
+                        <span class="main-value">5.2</span>
+                        <span class="unit">mmol/L</span>
+                        <span class="status normal">正常</span>
+                    </div>
+                    <div class="blood-sugar-times">
+                        <div class="sugar-time">
+                            <span class="time-label">空腹</span>
+                            <span class="time-value">4.8</span>
+                        </div>
+                        <div class="sugar-time">
+                            <span class="time-label">餐后</span>
+                            <span class="time-value">5.2</span>
+                        </div>
+                        <div class="sugar-time">
+                            <span class="time-label">睡前</span>
+                            <span class="time-value">5.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 体温 -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <i class="fas fa-thermometer-half"></i>
+                    <h3>体温</h3>
+                    <span class="last-update">10分钟前</span>
+                </div>
+                <div class="metric-content">
+                    <div class="current-value">
+                        <span class="main-value">36.5</span>
+                        <span class="unit">°C</span>
+                        <span class="status normal">正常</span>
+                    </div>
+                    <div class="metric-info">
+                        <p>今日最高：36.8°C</p>
+                        <p>今日最低：36.2°C</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 健康建议 -->
+        <section class="health-advice">
+            <h2>健康建议</h2>
+            <div class="advice-list">
+                <div class="advice-item">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="advice-content">
+                        <h4>血压控制良好</h4>
+                        <p>继续保持规律的作息和适量运动</p>
+                    </div>
+                </div>
+                <div class="advice-item">
+                    <i class="fas fa-walking"></i>
+                    <div class="advice-content">
+                        <h4>建议增加运动</h4>
+                        <p>今日步数较少，建议晚饭后散步30分钟</p>
+                    </div>
+                </div>
+                <div class="advice-item">
+                    <i class="fas fa-glass-water"></i>
+                    <div class="advice-content">
+                        <h4>记得多喝水</h4>
+                        <p>天气炎热，建议每小时饮水200ml</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 历史记录 -->
+        <section class="history-section">
+            <h2>历史记录</h2>
+            <div class="history-tabs">
+                <button class="tab-btn active" onclick="showHistory('week')">最近一周</button>
+                <button class="tab-btn" onclick="showHistory('month')">最近一月</button>
+                <button class="tab-btn" onclick="showHistory('year')">最近一年</button>
+            </div>
+            <div class="history-content">
+                <p>显示最近一周的健康数据趋势图表</p>
+            </div>
+        </section>
+
+        <!-- 底部导航 -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>首页</span>
+            </a>
+            <a href="health.html" class="nav-item active">
+                <i class="fas fa-heartbeat"></i>
+                <span>健康</span>
+            </a>
+            <a href="medications.html" class="nav-item">
+                <i class="fas fa-pills"></i>
+                <span>用药</span>
+            </a>
+            <a href="family.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>家人</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>设置</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="js/health.js"></script>
+</body>
+</html>

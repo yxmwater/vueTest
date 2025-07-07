@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧陪伴系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部栏 -->
+        <header class="header">
+            <div class="time-weather">
+                <div class="time" id="currentTime">10:47</div>
+                <div class="weather">
+                    <i class="fas fa-sun weather-icon"></i>
+                    <div class="temp">30°C</div>
+                    <div class="weather-desc">晴天</div>
+                </div>
+            </div>
+            <div class="greeting">
+                <h1 id="greeting">晚上好，王大爷</h1>
+                <p id="currentDate">2024年1月15日 星期一</p>
+                <p class="assist-text">有什么需要帮助的吗？</p>
+            </div>
+            <div class="voice-assistant">
+                <button class="voice-btn" onclick="startVoiceAssistant()">
+                    <i class="fas fa-microphone"></i>
+                    <span>语音助手</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- 主要功能区 -->
+        <main class="main-content">
+            <!-- 健康监测 -->
+            <section class="card health-summary" onclick="openHealthDetails()">
+                <h2><i class="fas fa-heartbeat"></i> 健康监测</h2>
+                <div class="vital-signs">
+                    <div class="vital-item blood-pressure">
+                        <i class="fas fa-heart"></i>
+                        <div class="vital-info">
+                            <span class="label">血压</span>
+                            <span class="value">120/80</span>
+                            <span class="status normal">正常</span>
+                        </div>
+                    </div>
+                    <div class="vital-item heart-rate">
+                        <i class="fas fa-heartbeat"></i>
+                        <div class="vital-info">
+                            <span class="label">心率</span>
+                            <span class="value">72 次/分</span>
+                            <span class="status normal">正常</span>
+                        </div>
+                    </div>
+                    <div class="vital-item temperature">
+                        <i class="fas fa-thermometer-half"></i>
+                        <div class="vital-info">
+                            <span class="label">体温</span>
+                            <span class="value">36.5°C</span>
+                            <span class="status normal">正常</span>
+                        </div>
+                    </div>
+                    <div class="vital-item blood-sugar">
+                        <i class="fas fa-tint"></i>
+                        <div class="vital-info">
+                            <span class="label">血糖</span>
+                            <span class="value">5.2 mmol/L</span>
+                            <span class="status normal">正常</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 用药提醒 -->
+            <section class="card medications" onclick="openMedicationDetails()">
+                <h2><i class="fas fa-pills"></i> 用药提醒</h2>
+                <div class="med-reminder">
+                    <div class="current-med">
+                        <h3>维生素D</h3>
+                        <p class="dosage">1000 IU</p>
+                        <div class="next-dose">
+                            <i class="fas fa-clock"></i>
+                            <span>下次服用：2小时后</span>
+                            <span class="time">下午 2:00</span>
+                        </div>
+                    </div>
+                    <button class="take-med-btn">
+                        <i class="fas fa-check"></i>
+                        已服用
+                    </button>
+                </div>
+                <div class="today-schedule">
+                    <h3>今日用药计划</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-capsules"></i>
+                            <span>维生素D - 1000 IU</span>
+                            <span class="med-time">下午 2:00</span>
+                            <span class="status pending">待服用</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-tablets"></i>
+                            <span>降压药</span>
+                            <span class="med-time">晚上 7:00</span>
+                            <span class="status pending">待服用</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 快捷功能 -->
+            <section class="quick-actions">
+                <div class="action-card call-family" onclick="callFamily()">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>联系家人</span>
+                </div>
+                <div class="action-card emergency" onclick="emergencyCall()">
+                    <i class="fas fa-ambulance"></i>
+                    <span>紧急求助</span>
+                </div>
+                <div class="action-card chat" onclick="openChat()">
+                    <i class="fas fa-comments"></i>
+                    <span>聊天陪伴</span>
+                </div>
+                <div class="action-card location" onclick="shareLocation()">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>位置共享</span>
+                </div>
+            </section>
+
+            <!-- 环境监测 -->
+            <section class="card environment" onclick="openEnvironmentDetails()">
+                <h2><i class="fas fa-home"></i> 环境监测</h2>
+                <div class="env-data">
+                    <div class="env-item">
+                        <i class="fas fa-temperature-high"></i>
+                        <span class="label">室内温度</span>
+                        <span class="value">25°C</span>
+                    </div>
+                    <div class="env-item">
+                        <i class="fas fa-tint"></i>
+                        <span class="label">湿度</span>
+                        <span class="value">55%</span>
+                    </div>
+                    <div class="env-item">
+                        <i class="fas fa-wind"></i>
+                        <span class="label">空气质量</span>
+                        <span class="value good">优</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 日程提醒 -->
+            <section class="card schedule" onclick="openScheduleDetails()">
+                <h2><i class="fas fa-calendar-alt"></i> 今日日程</h2>
+                <ul class="schedule-list">
+                    <li>
+                        <i class="fas fa-walking"></i>
+                        <span>早晨散步</span>
+                        <span class="time">上午 7:00</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-user-md"></i>
+                        <span>医院复诊</span>
+                        <span class="time">上午 10:00</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i>
+                        <span>社区活动</span>
+                        <span class="time">下午 3:00</span>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <!-- 底部导航 -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>首页</span>
+            </a>
+            <a href="health.html" class="nav-item">
+                <i class="fas fa-heartbeat"></i>
+                <span>健康</span>
+            </a>
+            <a href="medications.html" class="nav-item">
+                <i class="fas fa-pills"></i>
+                <span>用药</span>
+            </a>
+            <a href="family.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>家人</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>设置</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
